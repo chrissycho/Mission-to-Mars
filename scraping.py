@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup as Soup
 import pandas as pd
 import datetime as dt
 
-def scrape_all()
+def scrape_all():
     # Set the executable path and initialize the chrome browser in splinter
     # Initiate headless driver for deployment
     browser = Browser('chrome', executable_path="chromedriver",headless=True)
@@ -18,8 +18,8 @@ def scrape_all()
     
     # Run all scraping functions and store results in dictionary
     data = {
-        "news_title": news_title
-        "news_paragraph": news_paragraph,
+        "news_title": news_title,
+        "news_paragraph": news_p,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now()
@@ -97,7 +97,7 @@ def featured_image(browser):
 
 ### Facts Scraping
 
-def mars_facts()
+def mars_facts():
     # Add try/except for error handling
     try:
         # Import pandas dependency on top
