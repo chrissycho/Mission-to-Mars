@@ -18,6 +18,7 @@ def scrape_all():
     # Put scraping codes into a function to be reused (scraping done behind the scenes)
     
     news_title, news_paragraph = mars_news(browser)
+    hem_list = mars_hem_image(browser)
     # Run all scraping functions and store results in dictionary
     data = {
         "news_title": news_title,
@@ -25,7 +26,7 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now(),
-        "titles_url": mars_hem_image(browser)
+        "titles_url": hem_list
     } # This dictionary runs all of the functions we created & store all of the results
     browser.quit()
     return data
@@ -104,17 +105,12 @@ def mars_hem_image(browser):
     hem_list=[]
     for i in range(4):
         hemi={}
-        browser.find_by_css('h3')[i].click()
-        browser.is_element_present_by_css("ul.item_list li.slide", wait_time=1)
-        browser.is_element_present_by_text('Sample', wait_time=1)
-        Sample_elem = browser.links.find_by_partial_text('Sample')
-        Sample_elem.click()
+        browser.find_by_tag('h3')[i].click()
         soup= Soup(browser.html, 'html.parser')
-        src=soup.select_one('img').get("src")
-        hemi['img_url']= f'https://astrogeology.usgs.gov/{src}'
-        hemi['title']=soup.find('h2', class_='title').get_text()
-        if hemi not in hem_list:
-            hem_list.append(hemi)
+        src=soup.find('img', class_='wide-image')['src']
+        hemi['img_url']= "https://astropedia.astrogeology.usgs.gov{}".format(src)
+        hemi['title']=soup.find('h2', class_='title').text()
+        hem_list.append(hemi)
         browser.back()
     return hem_list
 ### Facts Scraping
@@ -134,7 +130,7 @@ def mars_facts():
     df.set_index('Description', inplace=True)
     
     # Convert dataframe into HTML format, add bootstrap
-    return df.to_html(classes="table table-striped")
+    return df.to_html(classes="table table-sm table-striped")
 
 # The last block of code tells Flask that our script is complete & ready for action 
 if __name__ == "__main__":

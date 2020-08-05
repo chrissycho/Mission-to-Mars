@@ -15,25 +15,26 @@ For this process, we created scraping codes written in python, storing data into
 
 <a name="resc"></a>
 ## Resources
-- Data Source: [data.js](https://github.com/chrissycho/UFOs/blob/master/data.js), [app.js](https://github.com/chrissycho/UFOs/blob/master/static/js/app.js), [index.html](https://github.com/chrissycho/UFOs/blob/master/index.html), [style.css](https://github.com/chrissycho/UFOs/blob/master/static/css/style.css)
-- Software: CSS, HTML, JavaScript, Jupyter Notebook
+- Data Source: [app_challenge.py](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/app_challenge.py), [scraping_challenge.py](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/scraping_challenge.py), [index_challenge.html](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/templates/index_challenge.html)
+- Software: BS4, Chromedriver, Flask, Flask_PyMongo, MongoDB, Python, Splinter
+- Dependencies: BeautifulSoup, Browser, Datetime, Pandas 
 
 <a name="obj"></a>
 ## Objectives
-- Explain the strengths and weaknesses of JavaScript “standard” and JavaScript version ES6+. 
-- Describe JavaScript syntax and ideal use cases. 
-- Build and deploy JavaScript functions, including built-in functions. 
-- Convert JavaScript functions to arrow functions. 
-- Build and deploy forEach (JavaScript for loop). 
-- Create, populate, and dynamically filter a table using JavaScript and HTML.
+- Gain familiarity with and use HTML elements, as well as class and id attributes, to identify content for web scraping.
+- Use BeautifulSoup and Splinter to automate a web browser and perform a web scrape.
+- Create a MongoDB database to store data from the web scrape.
+- Create a web application with Flask to display the data from the web scrape.
+- Create an HTML/CSS portfolio to showcase projects.
+- Use Bootstrap components to polish and customize the portfolio
 
 <a name="sum"></a>
 ## Summary
-We've completed ...
+First, we started off by downloading Web Scraping Tools such as Chromedriver, Splinter, BeautifulSoup, Flask, and MongoDB. Using VSCode, we wrote scripts to automate a web brwoser and perform a web scrape. Then, we created a web application with Flask using routes to scraping codes and MongoDB. Through the routes, we had the automate browser to store data into a MongoDB database everytime we scrape new data. 
 
 <a name="chal"></a>
 ## Challenge Overview
-In this challenge, you will be finding a few key aspects of Oahu’s seasonal weather data. The investors want to ensure you’ve hit all of the key points before opening the surf shop.
+In this challenge, we will be scraping high-resolution images of Mars from different hemispheres. Then, we will save the scraped data into a MongoDB database as well as updating the web application and Flaks to display the data from the web scrape. Styles to the web app will be added using the Bootstrap components. 
 
 ### Challenge Objective
 - Determine key statistical data about the month of June.
