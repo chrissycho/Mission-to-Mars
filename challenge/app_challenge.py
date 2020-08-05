@@ -30,4 +30,4 @@ def scrape(): # "/scrape" runs this function
 
 # Tell Flask to run 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
