@@ -6,7 +6,7 @@
 [ 4. Summary ](#sum)<br /> 
 [ 5. Challenge Overview ](#chal)<br /> 
 [ 6. Challenge Summary ](#chalsum)<br /> 
-[ 7. Challenge Findings ](#find)<br />
+[ 7. Challenge Issues ](#find)<br />
 
 <a name="desc"></a>
 ## Project Overview
@@ -49,4 +49,4 @@ For the purpose of the challenge, we obtained high-resolution images for each of
 
 <a name="find"></a>
 ## Challenge Issues
-1) Throughout this module, I faced challenges in displaying all the information on the web app with the same codes that everyone used. The web app I made wasn't properly displaying the title, paragraph, and table. I've thoroughly checked each scraping code and 
+1) Throughout this module, I faced challenges in displaying all the information on the web app with the same codes that everyone used. The web app I made wasn't properly displaying the title, paragraph, and table. I've thoroughly checked each scraping code and inspected any error although I didn't have any error message in scripts or mongo. Finally, I inspected the scraping codes by using breakpoints to find out which code was being skipped. As suggested by the lecturer, I was able to print the try-except error message for why the breakpoint was not scraping the data properly. It turns out that I had to simply install the certifications for the Python, which was not a problem before in other assignments with Python. Finally, I was able to display the layout of my web app as I wanted except making adjustments to the sizes of images and table. 
