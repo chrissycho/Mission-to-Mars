@@ -6,17 +6,15 @@ from splinter import Browser
 from bs4 import BeautifulSoup as Soup
 import pandas as pd
 import datetime as dt
-from datetime import datetime
 
 def scrape_all():
     # Set the executable path and initialize the chrome browser in splinter
     # Initiate headless driver for deployment
-    browser = Browser('chrome', executable_path="chromedriver",headless=True)
+    browser = Browser('chrome', executable_path="chromedriver")
     # headless=False is to see the scraping in action 
     # Put scraping codes into a function to be reused (scraping done behind the scenes)
     
     news_title, news_paragraph = mars_news(browser)
-    
     # Run all scraping functions and store results in dictionary
     data = {
         "news_title": news_title,
@@ -25,7 +23,6 @@ def scrape_all():
         "facts": mars_facts(),
         "last_modified": dt.datetime.now()
     } # This dictionary runs all of the functions we created & store all of the results
-   
     return data
 
     
@@ -48,11 +45,11 @@ def mars_news(browser):
         # Use the parent element to find the first 'a' tag and save it as 'news_title'
         news_title = slide_elem.find("div", class_="content_title").get_text()
         # Use the parent element to find the paragraph text
-        news_p = slide_elem.find("div", class_="article_teaser_body").get_text()
+        news_paragraph = slide_elem.find('div', class_="article_teaser_body").get_text()
 
     except AttributeError:
         return None, None
-    return news_title, news_p
+    return news_title, news_paragraph
 # mars_news(browser) --> telling Python that we'll be using browser variable we defined outside the function
 # Add try/except for error handling for Attribute errors --> potential error during web scraping 
 #   (e.g., common one= webpage's format changed & scraping code) no longer matches the new HTML elements 

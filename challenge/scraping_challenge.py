@@ -6,7 +6,9 @@ from splinter import Browser
 from bs4 import BeautifulSoup as Soup
 import pandas as pd
 import datetime as dt
-from datetime import datetime
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def scrape_all():
     # Set the executable path and initialize the chrome browser in splinter
@@ -16,7 +18,6 @@ def scrape_all():
     # Put scraping codes into a function to be reused (scraping done behind the scenes)
     
     news_title, news_paragraph = mars_news(browser)
-    
     # Run all scraping functions and store results in dictionary
     data = {
         "news_title": news_title,
@@ -25,7 +26,7 @@ def scrape_all():
         "facts": mars_facts(),
         "last_modified": dt.datetime.now()
     } # This dictionary runs all of the functions we created & store all of the results
-   
+    browser.quit()
     return data
 
     
@@ -52,6 +53,7 @@ def mars_news(browser):
 
     except AttributeError:
         return None, None
+        
     return news_title, news_p
 # mars_news(browser) --> telling Python that we'll be using browser variable we defined outside the function
 # Add try/except for error handling for Attribute errors --> potential error during web scraping 
@@ -89,11 +91,26 @@ def featured_image(browser):
         return None
     
     # Use the base URL to create an absolute URL
-    img_url = f'https://www.jpl.nasa.gov{img_url_rel}'
+    img_url = "https://www.jpl.nasa.gov{}".format(img_url_rel)
     
     return img_url
 
+## Mars Hemispheres
+def mars_hem_image(browser):
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    hem_list=[]
 
+    for i in range(4):
+        hemi={}
+        browser.find_by_css('h3')[i].click()
+        browser.find_by_css('a', 'href')[i].click()
+        soup= Soup(browser.html, 'html.parser')
+        hemi_img=soup.find('img')['src'].get_text()
+        hemi['img_url']= hemi_img
+        hemi['title']=soup.find('h2', class_='title').get_text()
+        hem_list.append(hemi)
+    return (hem_list)
 ### Facts Scraping
 
 def mars_facts():
@@ -102,7 +119,8 @@ def mars_facts():
         # Import pandas dependency on top
         # scrape the entire table using Pandas' .read_html() function
         df = pd.read_html('http://space-facts.com/mars/')[0]
-    except BaseException: 
+        print(df)
+    except BaseException:
         return None
     
     # Assign columns and set index of dataframe

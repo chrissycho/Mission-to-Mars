@@ -1,0 +1,66 @@
+<!-- Bootstrap stylesheet -->
+<!-- 1) <link/> line is where we can access all of the Bootstrap's components w/o downlaoidng them -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Mission to Mars</title>
+   <link
+     rel="stylesheet"
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+   />
+</head>
+<body>
+    <div class="containers">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape"
+                        role="button">Scrape New Data</a></p>
+        </div>
+        <!-- Mars News -->
+        <div class="row" id="mars-news">
+            <div class="col-md-12">
+                <div class="media">
+                    <div class="media-body">
+                        <h2>Latest Mars News</h2>
+                        <h4 class="media-heading">{{ mars.news_title }}</h4>
+                        <p>{{ mars.news_paragraph }}<p/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Section for Featured Image and Facts table -->
+        <!-- First level  -->
+        <div class="row" id="mars-featured-image">
+            <!-- Second level -->
+            <div class="col-md-8">
+                <h2>Featured Mars Image</h2>
+                <img src="{{ mars.featured_image }}" 
+                class="image-responsive" 
+                alt="Responsive image"/>
+            </div>
+            <!-- Mars Facts --> 
+            <div class="col-md-4">
+                <div class="row" id="mars-facts">
+                    <h4>Mars Facts</h4>
+                    {{ mars.facts | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- Components in stylesheet: buttons, thumbnails, alerts, etc -->
+<!-- 2) Set up containers -->
+<!-- p is only for formatting a tag is used to link to other things 
+    btn...btn-lg are 3 classes for button component-->
+    <!-- href inside the a tag is to link to hypertext reference -- our page "/scrape" -->
+    <!-- role="button" role is telling this link functions as a button, not a regular hyperlink -->
+    <!-- Scrape New Data is what text appearsin our Bootstrap button  -->
+    <!-- 3) Add header with jumbotron -->
+    <!-- 4) Add the news article & summary using grid -- column & row & Media classes--connect to Flask -->
+    <!-- 5) Add featured image -- use Bootstrap built-in for img & connect to Flask  -->
+    <!-- 6) Add the mars facts -->
