@@ -15,7 +15,7 @@ For this process, we created scraping codes written in python, storing data into
 
 <a name="resc"></a>
 ## Resources
-- Data Source: [app_challenge.py](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/app_challenge.py), [scraping_challenge.py](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/app_challenge.py), [index_challenge.html](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/templates/index_challenge.html)
+- Data Source: [app_challenge.py](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/app_challenge.py), [scraping_challenge.py](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/scraping_challenge.py), [index_challenge.html](https://github.com/chrissycho/Mission-to-Mars/blob/master/challenge/templates/index_challenge.html)
 - Software: BS4, Chromedriver, Flask, Flask_PyMongo, MongoDB, Python, Splinter
 - Dependencies: BeautifulSoup, Browser, Datetime, Pandas 
 
