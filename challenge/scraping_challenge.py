@@ -6,9 +6,7 @@ from splinter import Browser
 from bs4 import BeautifulSoup as Soup
 import pandas as pd
 import datetime as dt
-import ssl
 
-ssl._create_default_https_context = ssl._create_unverified_context
 
 def scrape_all():
     # Set the executable path and initialize the chrome browser in splinter
@@ -18,6 +16,7 @@ def scrape_all():
     # Put scraping codes into a function to be reused (scraping done behind the scenes)
     
     news_title, news_paragraph = mars_news(browser)
+    hem_list = mars_hem_image(browser)
     # Run all scraping functions and store results in dictionary
     data = {
         "news_title": news_title,
@@ -25,7 +24,14 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now(),
-        "titles_url": mars_hem_image(browser)
+        "hem1": hem_list[0]['img_url'],
+        "hem1_title": hem_list[0]['title'],
+        "hem2": hem_list[1]['img_url'],
+        "hem2_title": hem_list[1]['title'],
+        "hem3": hem_list[2]['img_url'],
+        "hem3_title": hem_list[2]['title'],
+        "hem4": hem_list[3]['img_url'],
+        "hem4_title": hem_list[3]['title']
     } # This dictionary runs all of the functions we created & store all of the results
     browser.quit()
     return data
@@ -111,7 +117,7 @@ def mars_hem_image(browser):
         Sample_elem.click()
         soup= Soup(browser.html, 'html.parser')
         src=soup.select_one('img').get("src")
-        hemi['img_url']= f'https://astrogeology.usgs.gov/{src}'
+        hemi['img_url']= f'https://astrogeology.usgs.gov{src}'
         hemi['title']=soup.find('h2', class_='title').get_text()
         if hemi not in hem_list:
             hem_list.append(hemi)
