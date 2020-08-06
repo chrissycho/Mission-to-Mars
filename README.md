@@ -36,8 +36,7 @@ First, we started off by downloading Web Scraping Tools such as Chromedriver, Sp
 ## Challenge Overview
 In this challenge, we will be scraping high-resolution images of Mars from different hemispheres. Then, we will save the scraped data into a MongoDB database as well as updating the web application and Flaks to display the data from the web scrape. Styles to the web app will be added using the Bootstrap components. 
 
-<a name="chal"></a>
-### Challenge Overview
+### Challenge Objectives
 - Use BeautifulSoup and Splinter to automate a web browser and scrape high-resolution images.
 - Use a MongoDB database to store data from the web scrape.
 - Update the web application and Flask to display the data from the web scrape.
